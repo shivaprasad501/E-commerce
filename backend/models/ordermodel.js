@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-import { type } from "os";
-import { object } from "zod";
+
 
 
 const orderSchema=new mongoose.Schema({
