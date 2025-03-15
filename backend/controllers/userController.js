@@ -6,7 +6,7 @@ import validator from 'validator'
 
 //creating jwt  token
  const createToken=(id)=>{
-    return jwt.sign({id},process.env.JWT_SECRET)
+    return jwt.sign({id},process.env.JWT_SECRET,{ expiresIn: '7d' })
  }
 
 //Route for user login
@@ -18,7 +18,7 @@ const loginUser=async(req,res)=>{
     if(!user){
         return res.json({success:false,msg: "User not found"})
     }
-    const isMatch =await bcrypt.compare(password,user.password)
+    const isMatch =await bcrypt.verify(password,user.password)
 
     if(isMatch){
         const token =createToken(user._id)
@@ -56,8 +56,7 @@ const registerUser=async(req,res)=>{
            return res.json({success:false,msg:"please enter strong password"})
         }
     //hasing user password
-    const salt= await bcrypt.genSalt(10)
-    const hashpassword= await bcrypt.hash(password,salt)
+    const hashpassword= await bcrypt.hash(password,10)
     //creating user
     const newUser=new usermodel({
         name,
@@ -85,7 +84,7 @@ const adminUser=async(req,res)=>{
     try {
         const{email,password}=req.body
   if(email===process.env.ADMIN_EMAIL&&password===process.env.ADMIN_PASSWORD){
-    const token=jwt.sign(email+password,process.env.JWT_SECRET)
+    const token=jwt.sign(email,process.env.JWT_SECRET,{ expiresIn: '7d' })
     res.json({success:true,token})
   }else{
     res.json({success:false,msg:"invalid credentials"})
