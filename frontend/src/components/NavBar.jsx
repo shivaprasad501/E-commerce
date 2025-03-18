@@ -19,7 +19,7 @@ const NavBar = () => {
       <img src={assets.logo} className='w-36' alt=''/>
       </Link>
      
-      <ul className=' hidden sm:flex gap-5 text-sm text-gray-700'>
+      <ul className=' hidden sm:flex gap-5 text-sm text-gray-700 items-center'>
         <NavLink to={"/"} className='flex flex-col items-center gap-1'>
             <p>HOME</p>
             <hr className='w-2/4  border-none h-[1.5px] bg-gray-700  hidden'></hr>
@@ -40,8 +40,7 @@ const NavBar = () => {
             <hr className='w-2/4  border-none h-[1.5px] bg-gray-700 hidden'></hr>
 
         </NavLink>
-       
-
+        <a className='flex flex-col items-center gap-1 border rounded-full px-4 py-2 bg-gray-100' href="https://admin-omega-three.vercel.app/list" target="_blank" rel="noopener noreferrer">Admin Panel</a>
       </ul>
             <div className='flex items-center gap-6'> 
             <img onClick={()=>setShowSearch(true)} src={assets.search_icon} className='w-5 cursor-pointer' alt=''/>
@@ -75,6 +74,8 @@ const NavBar = () => {
         <NavLink onClick={()=>setvisible(false)}  className="py-2 pl-6 border-b" to={"/collection"}>COLLECTION</NavLink>
         <NavLink onClick={()=>setvisible(false)}  className="py-2 pl-6 border-b" to={"/about"}>ABOUT</NavLink>
         <NavLink onClick={()=>setvisible(false)}  className="py-2 pl-6 border-b" to={"/contact"}>CONTACT</NavLink>
+        <a className="py-2 pl-6 border-b"  href="https://admin-omega-three.vercel.app/list" target="_blank" rel="noopener noreferrer">Admin Panel</a>
+
 
       </div>
       </div>
