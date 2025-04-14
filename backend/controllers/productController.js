@@ -30,7 +30,6 @@ import productmodel from "../models/productmodel.js";
     image:imageUrl,
     date:Date.now()
   };
- console.log(productData);
  const product=new productmodel(productData)
  await product.save()
        res.json({success:true,msg:"product added"})
